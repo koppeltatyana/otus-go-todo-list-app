@@ -13,10 +13,11 @@ type User struct {
 	Password  string    `json:"-"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
+	Tasks     []Task    `json:"tasks"`
 }
 
 // NewUser - конструктор для пользователя
-func NewUser(id int, username string, email string, password string) *User {
+func NewUser(id int, username string, email string, password string, tasks []Task) *User {
 	return &User{
 		ID:        id,
 		Username:  username,
@@ -24,7 +25,24 @@ func NewUser(id int, username string, email string, password string) *User {
 		Password:  password,
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
+		Tasks:     tasks,
 	}
+}
+
+func (u *User) AddTask(task Task) {
+	u.Tasks = append(u.Tasks, task)
+}
+
+func (u *User) PrintTasks() {
+	if len(u.Tasks) == 0 {
+		fmt.Println("No tasks found")
+		return
+	}
+	fmt.Printf("User \"%s\" Tasks: \n", u.Username)
+	for _, task := range u.Tasks {
+		fmt.Printf("ID: %d, Title: %s, Description: %s\n", task.ID, task.Title, task.Description)
+	}
+	fmt.Println()
 }
 
 // GetID - геттер для id
@@ -44,4 +62,15 @@ func (u *User) GetEmail() string {
 
 func (u *User) PrintUser() {
 	fmt.Printf("User ID: %d, Username: %s, Email: %s\n", u.ID, u.Username, u.Email)
+}
+
+func (u *User) UpdatePassword(newPassword string) {
+	u.Password = newPassword
+	u.UpdatedAt = time.Now()
+}
+
+func (u *User) UpdateUser(username, email string) {
+	u.Username = username
+	u.Email = email
+	u.UpdatedAt = time.Now()
 }

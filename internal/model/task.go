@@ -41,3 +41,14 @@ func (t *Task) GetTitle() string {
 func (t *Task) GetDescription() string {
 	return t.Description
 }
+
+func (t *Task) GetCompleted() bool {
+	return t.Completed
+}
+
+func (t *Task) UpdateTask(title, description string, completed bool) {
+	t.Title = title
+	t.Description = description
+	t.Completed = completed
+	t.UpdatedAt = time.Now()
+}
