@@ -27,3 +27,14 @@ func GetRandomEmail() string {
 func RandomInt(min, max int) int {
 	return min + rand.Intn(max-min)
 }
+
+// GetMaxVal - Получение максимального значения в слайсе интов
+func GetMaxVal(arr []int) int {
+	maxVal := 0
+	for i := 0; i < len(arr); i++ {
+		if arr[i] > maxVal {
+			maxVal = arr[i]
+		}
+	}
+	return maxVal
+}

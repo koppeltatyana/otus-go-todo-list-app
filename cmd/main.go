@@ -1,18 +1,23 @@
 package main
 
 import (
-	"github.com/koppeltatyana/otus-go-todo-list-app/internal/model"
-	"github.com/koppeltatyana/otus-go-todo-list-app/internal/utils"
+	"fmt"
+	"github.com/koppeltatyana/otus-go-todo-list-app/internal/repository"
+	"github.com/koppeltatyana/otus-go-todo-list-app/internal/service"
+	"time"
 )
 
 func main() {
-	// Создание пользователей user1 и user2
-	user1 := model.NewUser(1, "user1", "user1", utils.GetRandomEmail(), []model.Task{})
-	user2 := model.NewUser(2, "user2", "user2", utils.GetRandomEmail(), []model.Task{})
-	task1 := model.NewTask(1, "Title 1", "Description 1")
-	task2 := model.NewTask(2, "Title 2", "Description 2")
-	user1.AddTask(*task1)
-	user2.AddTask(*task2)
-	user1.PrintTasks()
-	user2.PrintTasks()
+	service.StartGenerating(5*time.Second, 1*time.Second)
+	fmt.Println("Список пользователей: ")
+	for _, u := range repository.Users {
+		fmt.Print("\t")
+		u.PrintUser()
+	}
+
+	fmt.Println("Список задач: ")
+	for _, t := range repository.Tasks {
+		fmt.Print("\t")
+		t.PrintTask()
+	}
 }
