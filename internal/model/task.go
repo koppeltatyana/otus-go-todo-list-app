@@ -31,19 +31,13 @@ func (t *Task) GetID() int {
 }
 
 func (t *Task) PrintTask() {
-	fmt.Printf("ID: %d, Title: %s, Description: %s, Completed: %t\n", t.ID, t.Title, t.Description, t.Completed)
-}
-
-func (t *Task) GetTitle() string {
-	return t.Title
-}
-
-func (t *Task) GetDescription() string {
-	return t.Description
-}
-
-func (t *Task) GetCompleted() bool {
-	return t.Completed
+	fmt.Printf(
+		"Task ID: %d, Title: %s, Description: %s, Completed: %t\n",
+		t.ID,
+		t.Title,
+		t.Description,
+		t.Completed,
+	)
 }
 
 func (t *Task) UpdateTask(title, description string, completed bool) {
