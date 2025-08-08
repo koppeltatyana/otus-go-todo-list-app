@@ -6,6 +6,11 @@ import (
 	"log"
 )
 
+// Entity - интерфейс сущности
+type Entity interface {
+	GetID() int
+}
+
 var (
 	Tasks []model.Task
 	Users []model.User
@@ -30,7 +35,7 @@ func GetUsersNextID() int {
 }
 
 // DistributeEntities - функция-распределитель сущностей
-func DistributeEntities(entities []model.Entity) {
+func DistributeEntities(entities []Entity) {
 	for _, entity := range entities {
 		switch e := entity.(type) {
 		case *model.Task:

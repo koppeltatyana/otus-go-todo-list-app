@@ -12,7 +12,7 @@ import (
 
 // GenerateEntities - генерация сущностей
 func GenerateEntities(entityCount int) {
-	var entities []model.Entity
+	var entities []repository.Entity
 	taskCount, userCount := 0, 0
 	log.Printf("Генерация %d сушностей", entityCount)
 	for i := range entityCount {
